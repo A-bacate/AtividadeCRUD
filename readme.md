@@ -6,7 +6,12 @@ Inicialize o projeto Node rodando no terminal:
 npm init -y
 
 Instale as dependências (bibliotecas):
-npm install express sqlite3 cors bcrypt
+npm install express sqlite3 cors
+
+*/****
+express --> mais importante (CRUD)!!
+sqlite3 --> banco de dados!!!
+*/****
 
 Rode o servidor backend no terminal (utilizando o nome do arquivo principal):
 node server.js
