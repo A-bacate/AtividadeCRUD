@@ -13,6 +13,17 @@ Funcionalidades obrigatórias:
     Editar Livro – Permitir modificar os dados de um livro já cadastrado.
     Excluir Livro – Remover um livro da lista e do banco de dados.
 */
+
+/*
+titulo
+autor
+anoPublicacao
+genero
+idioma
+preco
+
+titulo, autor, anoPublicacao, genero, idioma, preco
+*/
 const express = require('express')
 const sqlite3 = require('sqlite3')
 const cors = require('cors')
@@ -33,7 +44,7 @@ db.run(`CREATE TABLE IF NOT EXISTS livros (
     anoPublicacao INTEGER,
     genero TEXT,
     idioma TEXT,
-    preco BOOL
+    preco REAL
 )`)
 
 // app.get("/", (req,res) => {
@@ -42,4 +53,28 @@ db.run(`CREATE TABLE IF NOT EXISTS livros (
 //     })
 // })
 
-app.post("/livros")
+// CADASTRAR
+app.post("/livros", async (req, res)=>{
+    
+    let titulo = req.body.titulo
+    let autor = req.body.autor
+    let anoPublicacao = req.body.anoPublicacao
+    let genero = req.body.genero
+    let idioma = req.body. idioma
+    let preco = req.body.preco
+
+    db.run(`INSERT INTO usuarios (titulo, autor, anoPublicacao, genero, idioma, preco)
+        VALUES (?, ?, ?, ?, ?, ?)`, 
+        [/*VARIAVEIS FODAS*/],
+    function(){
+        res.json({
+            id: this.lastID,
+            titulo,
+            autor,
+            anoPublicacao,
+            genero,
+            idioma,
+            preco
+        })
+    })
+})
