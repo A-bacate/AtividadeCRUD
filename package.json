@@ -1,0 +1,26 @@
+{
+  "name": "atividadecrud",
+  "version": "1.0.0",
+  "description": "Abra o terminal e vá até a pasta do backend:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-bacate/AtividadeCRUD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/A-bacate/AtividadeCRUD/issues"
+  },
+  "homepage": "https://github.com/A-bacate/AtividadeCRUD#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
