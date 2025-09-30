@@ -47,15 +47,16 @@ db.run(`CREATE TABLE IF NOT EXISTS livros (
     preco REAL
 )`)
 
-// app.get("/", (req,res) => {
-//     res.json({
 
-//     })
-// })
+
 
 // CADASTRAR
 app.post("/livros", async (req, res)=>{
     
+    // teste bonito
+    console.log(req.body);
+    //
+
     let titulo = req.body.titulo
     let autor = req.body.autor
     let anoPublicacao = req.body.anoPublicacao
@@ -65,7 +66,7 @@ app.post("/livros", async (req, res)=>{
 
     db.run(`INSERT INTO usuarios (titulo, autor, anoPublicacao, genero, idioma, preco)
         VALUES (?, ?, ?, ?, ?, ?)`, 
-        [/*VARIAVEIS FODAS*/],
+        [titulo, autor, anoPublicacao, genero, idioma, preco],
     function(){
         res.json({
             id: this.lastID,
@@ -78,3 +79,83 @@ app.post("/livros", async (req, res)=>{
         })
     })
 })
+
+
+
+// EDITAR
+app.post("/livros/:id", async (req, res)=>{
+    let id = req.params.id
+
+    let titulo = req.body.titulo
+    let autor = req.body.autor
+    let anoPublicacao = req.body.anoPublicacao
+    let genero = req.body.genero
+    let idioma = req.body. idioma
+    let preco = req.body.preco
+
+    db.run(`UPDATE livros SET 
+        titulo = ?, autor = ?, anoPublicacao = ?, genero = ?, idioma = ?, preco = ?
+        WHERE id = ?`, [titulo, autor, anoPublicacao, genero, idioma, preco],
+    function(){
+        if(this.changes === 0){
+            res.status(404).json({
+                "message": "Livro não encontrado!"
+            })
+        }
+        res.json({
+            "message": "Livro atualizado com sucesso!"
+        })
+    })
+})
+
+
+
+// DELETAR 
+app.delete("/livros/:id", async (req, res)=>{
+    let id = req.params.id;
+
+    db.run(`DELETE FROM livros WHERE id = ?`,
+        [id], function(){
+            if(this.changes === 0){
+                res.status(404).json({
+                    "message":"Livro não encontrado!"
+                })
+            }
+            res.json({
+                "message": "Livro deletado!"
+            })
+        })
+})
+
+
+
+// SELECIONAR UM
+app.get("/livros/:id", async (req, res)=>{
+    let id = req.params.id
+
+    db.get(`SELECT * FROM livros WHERE id = ?`,
+        [id], (err, res)=>{
+        if(err){
+            res.status(400).json({
+                "message":"Livro não encontrado!"
+            })
+            return;
+        } else {
+            res.json(res)
+        }
+    })
+})
+
+
+
+// SELECIONAR TODOS
+app.get("/livros", async (req, res)=>{
+    db.get(`SELECT * FROM livros`, [], (err, rows) => {
+        res.json(rows)
+    })
+})
+
+
+
+// SERVER
+app.listen(PORT,()=>console.log(`Servidor rodando em https://localhost:${PORT}`));
