@@ -64,7 +64,7 @@ app.post("/livros", async (req, res)=>{
     let idioma = req.body. idioma
     let preco = req.body.preco
 
-    db.run(`INSERT INTO usuarios (titulo, autor, anoPublicacao, genero, idioma, preco)
+    db.run(`INSERT INTO livros (titulo, autor, anoPublicacao, genero, idioma, preco)
         VALUES (?, ?, ?, ?, ?, ?)`, 
         [titulo, autor, anoPublicacao, genero, idioma, preco],
     function(){
@@ -95,7 +95,7 @@ app.post("/livros/:id", async (req, res)=>{
 
     db.run(`UPDATE livros SET 
         titulo = ?, autor = ?, anoPublicacao = ?, genero = ?, idioma = ?, preco = ?
-        WHERE id = ?`, [titulo, autor, anoPublicacao, genero, idioma, preco],
+        WHERE id = ?`, [titulo, autor, anoPublicacao, genero, idioma, preco, id],
     function(){
         if(this.changes === 0){
             res.status(404).json({
@@ -134,23 +134,33 @@ app.get("/livros/:id", async (req, res)=>{
     let id = req.params.id
 
     db.get(`SELECT * FROM livros WHERE id = ?`,
-        [id], (err, res)=>{
-        if(err){
-            res.status(400).json({
-                "message":"Livro não encontrado!"
-            })
-            return;
-        } else {
-            res.json(res)
-        }
-    })
+        [id], (err, result) => {
+            if(result){
+                res.json(result)
+            } else {
+                res.status(404).json({
+                    "message" : "Livro não encontrado!"
+                })
+            }
+        })
+        
+    //     (err, result)=>{
+    //     if(err){
+    //         res.status(400).json({
+    //             "message":"Livro não encontrado!"
+    //         })
+    //         return;
+    //     } else {
+    //         res.json(result)
+    //     }
+    // })
 })
 
 
 
 // SELECIONAR TODOS
 app.get("/livros", async (req, res)=>{
-    db.get(`SELECT * FROM livros`, [], (err, rows) => {
+    db.all(`SELECT * FROM livros`, [], (err, rows) => {
         res.json(rows)
     })
 })

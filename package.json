@@ -2,7 +2,7 @@
   "name": "atividadecrud",
   "version": "1.0.0",
   "description": "Abra o terminal e vá até a pasta do backend:",
-  "main": "server.js",
+  "main": "index.js",
   "dependencies": {
     "abbrev": "^1.1.1",
     "accepts": "^2.0.0",
@@ -197,5 +197,6 @@
   "bugs": {
     "url": "https://github.com/A-bacate/AtividadeCRUD/issues"
   },
-  "homepage": "https://github.com/A-bacate/AtividadeCRUD#readme"
+  "homepage": "https://github.com/A-bacate/AtividadeCRUD#readme",
+  "devDependencies": {}
 }
