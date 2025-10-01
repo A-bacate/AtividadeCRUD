@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styleCatalogo.css">
+    <script defer src="scriptCatalogo.js"></script>
+    <title>Catálogo</title>
+    <!-- 
+    titulo
+    autor
+    anoPublicacao
+    genero
+    idioma
+    preco 
+    -->
+</head>
+<body>
+    <h2>Catálogo</h2>
+
+    <button class="btn-voltar" onclick="voltar()">Voltar para Home</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Ano</th>
+                <th>Gênero</th>
+                <th>Idioma</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody id="tabela">
+            <tr>
+                <!-- Gerado dinamicamente no javascript -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
