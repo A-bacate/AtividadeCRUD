@@ -37,5 +37,7 @@ function carregar(){
 //     <button class="btn-excluir" onclick="excluir(${livro.id})">Excluir</button>
 //     <button class="btn-editar" onclick="editar(${livro.id})">Editar</button>
 // </td>
-
+function voltar(){
+    window.location.href = "../Home/Home.html"
+}
 window.onload = carregar

@@ -1,0 +1,16 @@
+#caixinha{
+    background-color: #fff0e9;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 2px #662a0d;
+    border-radius: 35px;
+
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;    
+    height: 500px;
+
+    -webkit-box-shadow: 0px 0px 15px 3px #83473d; 
+    box-shadow: 0px 0px 15px 3px #66372f;
+}
