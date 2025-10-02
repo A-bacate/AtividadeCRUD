@@ -69,6 +69,67 @@ function editarLista(){
     })
 }
 
+// excluir
+function excluir(id){
+    fetch(`http://localhost:3000/usuarios/${id}`, {
+        'method': 'DELETE'
+    })
+    .then(() => carregar())
+}
+
+function editar(id){
+    let novoTitulo = prompt("Digite o novo título: ")
+    let novoAutor = prompt("Digite o novo autor: ")
+    let novoAnoPublicacao = prompt("Digite o novo ano de publicação: ")
+    let novoGenero = prompt("Digite o novo gênero: ")
+    let novoIdioma = prompt("Digite o novo idioma: ")
+    let novoPreco = prompt("Digite o novo preço: ")
+
+    if(novoTitulo<1){
+        alert("Titulo não pode estar vazio!")
+        return
+    }
+    if(novoAutor<1){
+        alert("Autor não pode estar vazio!")
+        return
+    }
+    if(novoAnoPublicacao<1){
+        alert("Ano de publicação não pode estar vazia!")
+        return
+    }
+    if(novoGenero<1){
+        alert("Gênero não pode estar vazio!")
+        return
+    }
+    if(novoIdioma<1){
+        alert("Idioma não pode estar vazio!")
+        return
+    }
+    if(novoPreco<1){
+        alert("Preço não pode estar vazio!")
+        return
+    }
+
+    fetch(`http://localhost:3000/livros/${id}`, {
+        'method': 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        'body': JSON.stringify({
+            titulo: novoTitulo,
+            autor: novoAutor,
+            anoPublicacao: novoAnoPublicacao,
+            genero: novoGenero,
+            idioma: novoIdioma,
+            preco: novoPreco 
+        })   
+    })
+    .then(() => carregar())
+}
+
+
+
+
 window.onload = function() {
     carregar();
     let btn = document.querySelector('.btn-editar-lista');
