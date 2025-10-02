@@ -1,16 +1,88 @@
 #caixinha{
-    background-color: #fff0e9;
+    background: #66372f;
     margin-left: auto;
     margin-right: auto;
     border: solid 2px #662a0d;
     border-radius: 35px;
 
-    width: 30%;
+    width: 50%;
     display: flex;
+    flex-direction: column;
+
     justify-content: center;
     align-items: baseline;    
-    height: 500px;
+    height: auto;
+    overflow: auto;
+    padding: 24px; /* Espaço interno para afastar o conteúdo da borda */
 
-    -webkit-box-shadow: 0px 0px 15px 3px #83473d; 
-    box-shadow: 0px 0px 15px 3px #66372f;
+    -webkit-box-shadow: 0px 0px 15px 3px #4d2b25; 
+    box-shadow: 0px 0px 15px 3px #2e1915;
 }
+body{
+    background-image: url(fundo.jpg);
+}
+h1{
+    text-align: center;
+    color: #fff0e9;
+}
+table{
+    color: #fff0e9;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+    table-layout: fixed;
+    word-break: break-word;
+}
+th{
+    font-size: large;
+    padding: 12px 18px;
+    background: #22120f;
+    border-radius: 8px 8px 0 0;
+}
+tr{
+    padding: 16px 22px;
+    background: #381e19;
+    border-radius: 6px;
+}
+button{
+    font-family:'Lucida Handwriting';
+    cursor: pointer;
+}
+.btn-editar-lista{
+    background: #3a5280ff;
+    width: 100%;
+    font-size: large;
+    margin-top: 20px;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 5px;
+    border: solid 1px #22120f;
+}
+.btn-editar-lista:hover{
+    background-position: right center;
+    transform: translateY(-2px);
+}
+.btn-editar-lista:active {
+    transform: translateY(0);
+} 
+.btn-excluir{
+    border: #22120f;
+    color: #fff0e9;
+    background: #a30505;
+}
+.btn-excluir:hover{
+    background: #ca2020;
+    background-position: right center;
+    transform: translateY(-2px);
+}
+.btn-excluir:active {
+    transform: translateY(0);
+} 
+.btn-editar:hover{
+    background: #c7c7c7;
+    background-position: right center;
+    transform: translateY(-2px);
+}
+.btn-editar:active {
+    transform: translateY(0);
+} 

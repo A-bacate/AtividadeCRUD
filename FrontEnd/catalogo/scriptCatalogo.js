@@ -40,4 +40,49 @@ function carregar(){
 function voltar(){
     window.location.href = "../Home/Home.html"
 }
-window.onload = carregar
+
+function editarLista(){
+    fetch('http://localhost:3000/livros')
+    .then(res => res.json())
+    .then(data => {
+        const tbody = document.getElementById('tabela')
+        tbody.innerHTML = ""
+
+        console.log(data);
+        data.forEach(livro => {
+            const tr = document.createElement('tr')
+            tr.innerHTML = `
+                <td id="id">${livro.id}</td>
+                <td>${livro.titulo}</td>
+                <td>${livro.autor}</td>
+                <td>${livro.anoPublicacao}</td>
+                <td>${livro.genero}</td>
+                <td>${livro.idioma}</td>
+                <td>R$${livro.preco},00</td>
+                <td>
+                    <button class="btn-excluir" onclick="excluir(${livro.id})">Excluir</button>
+                    <button class="btn-editar" onclick="editar(${livro.id})">Editar</button>
+                </td>
+            `
+            tbody.appendChild(tr)
+        });
+    })
+}
+
+window.onload = function() {
+    carregar();
+    let btn = document.querySelector('.btn-editar-lista');
+    if(btn) {
+        btn.addEventListener('click', function() {
+            if (btn.innerHTML === "Editar Lista") {
+                btn.innerHTML = "Concluir Edição";
+                document.querySelector('.btn-editar-lista').style.backgroundColor = '#3e8499ff';
+                editarLista();
+            } else {
+                document.querySelector('.btn-editar-lista').style.backgroundColor = '#3a5280ff';
+                btn.innerHTML = "Editar Lista";
+                carregar();
+            }
+        });
+    }
+}
