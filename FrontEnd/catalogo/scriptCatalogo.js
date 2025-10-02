@@ -70,11 +70,19 @@ function editarLista(){
 }
 
 // excluir
+let emEdicao = false;
+
 function excluir(id){
-    fetch(`http://localhost:3000/usuarios/${id}`, {
+    fetch(`http://localhost:3000/livros/${id}`, {
         'method': 'DELETE'
     })
-    .then(() => carregar())
+    .then(() => {
+        if (emEdicao) {
+            editarLista();
+        } else {
+            carregar();
+        }
+    })
 }
 
 function editar(id){
@@ -124,7 +132,13 @@ function editar(id){
             preco: novoPreco 
         })   
     })
-    .then(() => carregar())
+    .then(() => {
+        if (emEdicao) {
+            editarLista();
+        } else {
+            carregar();
+        }
+    })
 }
 
 
@@ -138,10 +152,12 @@ window.onload = function() {
             if (btn.innerHTML === "Editar Lista") {
                 btn.innerHTML = "Concluir Edição";
                 document.querySelector('.btn-editar-lista').style.backgroundColor = '#3e8499ff';
+                emEdicao = true;
                 editarLista();
             } else {
                 document.querySelector('.btn-editar-lista').style.backgroundColor = '#3a5280ff';
                 btn.innerHTML = "Editar Lista";
+                emEdicao = false;
                 carregar();
             }
         });
