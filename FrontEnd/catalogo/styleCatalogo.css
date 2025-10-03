@@ -33,7 +33,10 @@
     padding: 24px; 
 }
 
-
+#navegacao{
+    /* background: #66372f; */
+    width: 10%;
+}
 
 body{
     background-image: url(fundo.jpg);
