@@ -31,6 +31,8 @@ function carregar(){
             `
             tbody.appendChild(tr)
         });
+        const bt = document.getElementById('botao')
+        bt.innerHTML = ""
     })
 }
 // <td>
@@ -66,6 +68,10 @@ function editarLista(){
             `
             tbody.appendChild(tr)
         });
+        const bt = document.getElementById('botao')
+        bt.innerHTML = `
+            <button class="btn-adicionar" onclick="adicionar()">Adicionar</button>
+        `
     })
 }
 
@@ -79,32 +85,36 @@ function excluir(id){
 
 function editar(id){
     let novoTitulo = prompt("Digite o novo título: ")
-    let novoAutor = prompt("Digite o novo autor: ")
-    let novoAnoPublicacao = prompt("Digite o novo ano de publicação: ")
-    let novoGenero = prompt("Digite o novo gênero: ")
-    let novoIdioma = prompt("Digite o novo idioma: ")
-    let novoPreco = prompt("Digite o novo preço: ")
-
     if(novoTitulo<1){
         alert("Titulo não pode estar vazio!")
         return
     }
+
+    let novoAutor = prompt("Digite o novo autor: ")
     if(novoAutor<1){
         alert("Autor não pode estar vazio!")
         return
     }
+
+    let novoAnoPublicacao = prompt("Digite o novo ano de publicação: ")
     if(novoAnoPublicacao<1){
         alert("Ano de publicação não pode estar vazia!")
         return
     }
+
+    let novoGenero = prompt("Digite o novo gênero: ")
     if(novoGenero<1){
         alert("Gênero não pode estar vazio!")
         return
     }
+
+    let novoIdioma = prompt("Digite o novo idioma: ")
     if(novoIdioma<1){
         alert("Idioma não pode estar vazio!")
         return
     }
+
+    let novoPreco = prompt("Digite o novo preço: ")
     if(novoPreco<1){
         alert("Preço não pode estar vazio!")
         return
@@ -127,7 +137,59 @@ function editar(id){
     .then(() => carregar())
 }
 
+function adicionar(){
+    let novoTitulo = prompt("Digite o título: ")
+    if(novoTitulo<1){
+        alert("Titulo não pode estar vazio!")
+        return
+    }
 
+    let novoAutor = prompt("Digite o autor: ")
+    if(novoAutor<1){
+        alert("Autor não pode estar vazio!")
+        return
+    }
+
+    let novoAnoPublicacao = prompt("Digite o ano de publicação: ")
+    if(novoAnoPublicacao<1){
+        alert("Ano de publicação não pode estar vazia!")
+        return
+    }
+
+    let novoGenero = prompt("Digite o gênero: ")
+    if(novoGenero<1){
+        alert("Gênero não pode estar vazio!")
+        return
+    }
+
+    let novoIdioma = prompt("Digite o idioma: ")
+    if(novoIdioma<1){
+        alert("Idioma não pode estar vazio!")
+        return
+    }
+
+    let novoPreco = prompt("Digite o preço: ")
+    if(novoPreco<1){
+        alert("Preço não pode estar vazio!")
+        return
+    }
+
+    fetch(`http://localhost:3000/livros/`, {
+        'method': 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        'body': JSON.stringify({
+            titulo: novoTitulo,
+            autor: novoAutor,
+            anoPublicacao: novoAnoPublicacao,
+            genero: novoGenero,
+            idioma: novoIdioma,
+            preco: novoPreco 
+        })
+    })
+    .then(() => carregar())
+}
 
 
 window.onload = function() {
