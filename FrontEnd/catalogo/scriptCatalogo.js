@@ -192,6 +192,17 @@ function adicionar(){
 }
 
 
+/*
+
+Olha, vou falar a verdade, eu sei que isso aqui não é a melhor prática,
+mas funciona e eu tô com preguiça de pesquisar mais sobre isso 
+passei tempo demais olhando pra tela do meu pc :,)
+
+*/
+
+// isso aqui é pura gambiarra, coisinha de programador preguiçoso :D
+// puro suco brasileiro tbm né
+
 window.onload = function() {
     carregar();
     let btn = document.querySelector('.btn-editar-lista');
